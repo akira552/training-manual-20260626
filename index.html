@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>公司培訓機構轉型與申請策略執行手冊</title>
+  <style>
+    :root {
+      --navy: #14212c;
+      --deep: #0e171f;
+      --teal: #2f7d78;
+      --mint: #dcece5;
+      --paper: #f7f3ea;
+      --gold: #c58d46;
+      --rust: #c65d35;
+      --ink: #22282d;
+      --muted: #66727c;
+      --line: rgba(20, 33, 44, .14);
+      --white: #fffdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: #1f6f89; word-break: break-all; }
+    .hero {
+      min-height: 86vh;
+      padding: 72px clamp(26px, 6vw, 92px);
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(14, 23, 31, .98) 0 58%, rgba(47, 125, 120, .9) 58% 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hero h1 {
+      margin: 0 0 24px;
+      max-width: 1120px;
+      font-size: clamp(42px, 7.2vw, 92px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+    .hero p {
+      margin: 0;
+      max-width: 1080px;
+      color: rgba(255,255,255,.82);
+      font-size: clamp(20px, 2.3vw, 32px);
+      font-weight: 680;
+    }
+    .hero-meta {
+      margin-top: 36px;
+      color: rgba(255,255,255,.68);
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .hero-panel {
+      margin-top: 48px;
+      max-width: 1240px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px;
+      padding: clamp(22px, 4vw, 42px);
+      background: rgba(255,255,255,.06);
+    }
+    .bars { display: grid; gap: 18px; margin-bottom: 34px; }
+    .bar { height: 52px; border-radius: 8px; }
+    .bar.gold { background: var(--gold); width: 94%; }
+    .bar.teal { background: var(--teal); width: 88%; }
+    .bar.rust { background: var(--rust); width: 82%; }
+    .panel-labels {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      font-size: clamp(24px, 3.7vw, 46px);
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .section {
+      padding: 68px clamp(24px, 6vw, 88px);
+      border-bottom: 1px solid var(--line);
+    }
+    .section.dark { background: var(--navy); color: var(--white); }
+    .section h2 {
+      margin: 0 0 20px;
+      font-size: clamp(30px, 4.2vw, 58px);
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+    .section h3 { letter-spacing: 0; }
+    .lead {
+      max-width: 1080px;
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 21px;
+      font-weight: 640;
+    }
+    .dark .lead { color: rgba(255,255,255,.76); }
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .summary-item {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      min-height: 176px;
+    }
+    .summary-item b { display: block; margin-bottom: 8px; font-size: 22px; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .stat {
+      min-height: 122px;
+      padding: 20px;
+      background: var(--white);
+      border-left: 8px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+    }
+    .stat b { display: block; font-size: 42px; line-height: 1; }
+    .stat span { color: var(--muted); font-weight: 760; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .card, .gate, .worksheet {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+    }
+    .dark .card, .dark .gate { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); }
+    .card h3, .gate h3 { margin: 12px 0 10px; font-size: 24px; line-height: 1.28; }
+    .card p, .gate p { margin: 0 0 12px; color: #53606a; font-weight: 560; }
+    .dark .card p, .dark .gate p { color: rgba(255,255,255,.74); }
+    .meta { color: var(--muted); font-size: 14px; font-weight: 720; }
+    .badge, .gate span {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--mint);
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 840;
+    }
+    .note {
+      margin: 28px 0 0;
+      padding: 22px 26px;
+      border-left: 8px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      background: #fff6df;
+      font-weight: 760;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .worksheet {
+      margin-top: 24px;
+    }
+    .worksheet h3 { margin-top: 0; font-size: 26px; }
+    .worksheet ul { margin-bottom: 0; }
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+    table { border-collapse: collapse; width: 100%; min-width: 1120px; }
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+    }
+    th { background: #efe7da; color: #34414a; font-size: 14px; }
+    td { font-size: 14px; }
+    .route-flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+    }
+    .route-step {
+      min-height: 120px;
+      background: var(--white);
+      border-top: 8px solid var(--teal);
+      border-radius: 0 0 8px 8px;
+      padding: 18px;
+      font-weight: 760;
+    }
+    .route-step small { display: block; color: var(--muted); margin-top: 8px; font-weight: 640; }
+    @media print {
+      .hero { min-height: auto; }
+      .section { break-inside: avoid; }
+      a { color: var(--ink); text-decoration: none; }
+    }
+    @media (max-width: 980px) {
+      .summary, .stats, .grid, .two-col, .route-flow, .panel-labels { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .hero h1 { font-size: 46px; }
+      table { min-width: 960px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <h1>公司培訓機構轉型與申請策略執行手冊</h1>
+      <p>內部工作坊版：用來帶公司盤點屬性、選擇政府與第三類資源路線、設計課程商品、安排時程與準備申請策略。</p>
+      <div class="hero-meta">2026-06-26｜我方內部使用｜不建議原封不動對外發送</div>
+    </div>
+    <div class="hero-panel">
+      <div class="bars">
+        <div class="bar gold"></div>
+        <div class="bar teal"></div>
+        <div class="bar rust"></div>
+      </div>
+      <div class="panel-labels">
+        <div>公司自評</div>
+        <div>路線判定</div>
+        <div>課程商品</div>
+        <div>申請時程</div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" data-contract-section="executive-summary">
+    <h2>Executive Summary｜內部總判斷</h2>
+    <p class="lead">這份手冊把目前八份研究成果轉成一套洽談流程。使用時不要先問公司想申請哪個補助，而是先判斷它具備哪種角色、能教什麼、缺什麼證據、適合自己申請還是找合作主體。</p>
+    <div class="summary">
+      <div class="summary-item"><b>第一輪最可落地仍是地方育成。</b>一般公司若能被說明為創業育成、人才培育、管理諮詢、商機媒合或數位轉型角色，優先對應高雄青年局創業育成與青年職涯活動路線。</div>
+      <div class="summary-item"><b>課程商品先抓 C01 與 C02。</b>AI、電商、行銷、市集攤主、商圈創業最容易做成12-18小時前導班，再擴成72小時完整育成方案。</div>
+      <div class="summary-item"><b>第三類資源用來補合作與對標。</b>文策院、資策會、StarFab、AppWorks、雲端抵免與亞灣新創園可強化內容、導師、場域與資源，但不能寫成政府補助核定。</div>
+      <div class="summary-item"><b>專業類別必須分流。</b>醫學、長照、職安、勞工法務、正式職訓與產投課程不可直接用一般公司包裝，需合格主體或中長期資格建置。</div>
+    </div>
+    <div class="stats"><div class="stat"><b>7</b><span>培訓類別</span></div>
+<div class="stat"><b>20</b><span>課程商品</span></div>
+<div class="stat"><b>15</b><span>政府窗口/計畫</span></div>
+<div class="stat"><b>13</b><span>第三類資源</span></div></div>
+  </section>
+
+  <section class="section dark" data-contract-section="key-findings">
+    <h2>手冊的實際使用流程</h2>
+    <p class="lead">每次洽談公司都照這五步走，避免一開始就陷入補助名稱或課程名稱。</p>
+    <div class="route-flow">
+      <div class="route-step">1. 看公司屬性<small>公司、協會、學校、場域、新創、文化團隊</small></div>
+      <div class="route-step">2. 看業務與證據<small>教學、顧問、活動、場地、作品、技術、成果</small></div>
+      <div class="route-step">3. 判定路線<small>自行、合作、第三類、中長期、暫不進入</small></div>
+      <div class="route-step">4. 設計課程商品<small>入門班、進階班、完整育成班</small></div>
+      <div class="route-step">5. 排時程與文件<small>3/6/12/24個月任務與投件前查核</small></div>
+    </div>
+  </section>
+
+  <section class="section" data-contract-section="company-assessment">
+    <h2>公司如何看待自己的屬性</h2>
+    <p class="lead">同一個課程主題，申請路線會因公司型態而不同。這張表是洽談時第一個判讀工具。</p>
+    <div class="table-wrap "><table><thead><tr><th>公司類型</th><th>怎麼看待自己的屬性</th><th>優先路線</th><th>要補的證據</th><th>不要這樣承諾</th></tr></thead><tbody><tr><td>一般公司／顧問公司</td><td>先看是否能被說明為創業育成、人才培育、管理諮詢、數位轉型或商機媒合角色。</td><td>青年局創業育成機構補助、C01/C02課程、自行申請或合作申請。</td><td>公司登記、營業項目、章程目的、課程實績、師資與核銷流程。</td><td>不要只用品牌名或活動企劃能力主張自己是辦訓機構。</td></tr><tr><td>協會／民間團體</td><td>重點看是否有會員、社群、公共目的、辦訓或地方服務能力。</td><td>青年局育成補助、文化部、工會或地方創生合作路線。</td><td>立案證明、章程、理監事或會員結構、活動成果、財務與核銷能力。</td><td>不要把一般社群活動直接寫成政府認可課程。</td></tr><tr><td>學校／大專院校</td><td>可作正式辦訓、師資、場地、學員招募與官方合作主體。</td><td>產投/OJT合作、文化/流行音樂人才培訓、地方育成合作。</td><td>系所或推廣教育單位、師資、場地、安全、課程審查流程。</td><td>不要只掛名合作，需有實際教學、場地或行政責任。</td></tr><tr><td>已核定職訓或辦訓單位</td><td>優先確認核定範圍、年度、課程類型與是否可承接合作。</td><td>合作申請、OJT/產投對標、中長期資格學習。</td><td>核定課程證據、TTQS或其他品質文件、講師與行政流程。</td><td>不要把單一年度或單一課程核定寫成永久資格。</td></tr><tr><td>青創友善空間／場域業者</td><td>先看是否有實體場域、進駐制度、課程活動與青創服務。</td><td>場域合作、青年局友善空間、創業育成活動承載。</td><td>租約或產權、空間照片、安全、保險、活動紀錄、進駐名單。</td><td>不要只提供場地，需補育成、諮詢、社群或媒合服務。</td></tr><tr><td>文創／演藝／地方團隊</td><td>先看是否有作品、IP、展演、地方文化行動或可商品化內容。</td><td>文策院、文化部、文化局、第三類加速器與文化內容課程。</td><td>作品集、演出或展覽證明、合作場域、學員成果與商業化證據。</td><td>不要把創作成果直接等同於辦訓或補助資格。</td></tr><tr><td>新創科技／AI／電商公司</td><td>先看是否有產品、網站、開發能力、客戶案例與可展示原型。</td><td>資策會、StarFab、NVIDIA、Google、AWS、青年局育成補助。</td><td>產品雛形、技術人員、網站、客戶或使用者案例、Demo與資料安全規劃。</td><td>不要把雲端抵免或加速器入選寫成政府補助核定。</td></tr></tbody></table></div>
+  </section>
+
+  <section class="section" data-contract-section="workshop-materials">
+    <h2>60-90分鐘工作坊教材</h2>
+    <p class="lead">這六關是帶公司現場填寫的骨架。每一關都要有產出，否則不要直接進投件承諾。</p>
+    <div class="grid">
+        <article class="gate">
+          <span>第1關</span>
+          <h3>公司屬性盤點</h3>
+          <p><b>帶問問題：</b>這家公司到底是公司、團體、學校、場域、技術新創，還是文化團隊？</p>
+          <p><b>產出：</b>完成公司屬性、業務屬性、可教內容與需要合作主體判定。</p>
+        </article>
+        
+
+        <article class="gate">
+          <span>第2關</span>
+          <h3>資格邊界判讀</h3>
+          <p><b>帶問問題：</b>哪些條件已具備，哪些只是合作資源，哪些不能對外承諾？</p>
+          <p><b>產出：</b>得到自行申請、合作申請、第三類導入、中長期或暫不進入判定。</p>
+        </article>
+        
+
+        <article class="gate">
+          <span>第3關</span>
+          <h3>課程商品設計</h3>
+          <p><b>帶問問題：</b>公司能教什麼、學員會產出什麼、政府或第三類資源為什麼會認可？</p>
+          <p><b>產出：</b>形成入門班、進階班、完整育成班三層課程商品。</p>
+        </article>
+        
+
+        <article class="gate">
+          <span>第4關</span>
+          <h3>目標群眾與成果證據</h3>
+          <p><b>帶問問題：</b>學員是青年、攤商、新創、文創、勞工、健康服務或展演團隊？</p>
+          <p><b>產出：</b>設定招生對象、出席、作業、成果、照片、滿意度與追蹤指標。</p>
+        </article>
+        
+
+        <article class="gate">
+          <span>第5關</span>
+          <h3>路線選擇</h3>
+          <p><b>帶問問題：</b>要走政府補助、第三類資源、合作單位，還是先做內部試辦？</p>
+          <p><b>產出：</b>選定主申請資源、備援路線、合作對象與投件前待補查事項。</p>
+        </article>
+        
+
+        <article class="gate">
+          <span>第6關</span>
+          <h3>行動時程</h3>
+          <p><b>帶問問題：</b>3個月內要補什麼，6個月內要投什麼，12到24個月要建什麼資格？</p>
+          <p><b>產出：</b>完成3/6/12/24個月任務表與責任分工。</p>
+        </article>
+        </div>
+    <div class="worksheet">
+      <h3>洽談提問腳本</h3>
+      <ul><li>公司正式登記名稱、統編、營業項目與章程目的是否能支撐培訓或育成？</li><li>過去是否辦過課程、講座、顧問、活動、展演、場域服務或學員輔導？有沒有照片、名單、滿意度或成果？</li><li>最有把握的教學主題是哪一類：AI、電商、市集、工藝、勞工法務、大健康、文創、演藝？</li><li>公司能提供的是師資、場地、學員、內容、行政核銷，還是市場/企業/通路資源？</li><li>是否願意找學校、協會、工會、醫療長照單位、職訓機構或文化團隊作行政主體？</li><li>第一輪希望拿補助、拿合作、累積辦訓實績，還是建立長期資格？</li></ul>
+    </div>
+  </section>
+
+  <section class="section" data-contract-section="category-decision">
+    <h2>七大培訓類別與路線判斷</h2>
+    <p class="lead">第一版策略是先用 C01、C02 建成果與補助申請能力，再把 C03-C07 做成合作型或中長期資格型產品。</p>
+    <div class="grid">
+    <article class="card">
+      <div><span class="badge">第一優先</span><h3>C01｜數位與商業職能</h3><p>合作申請｜公司可先以青年局創業育成補助與數位轉型輔導切入；正式產投/OJT 辦訓宜找學校、協會或已核定單位合作。 課程可先看：AI行銷與電商成長班、程式與自動化營運工作坊。</p></div>
+      <p class="meta">窗口/資源：115年度補助創業育成機構及青年職涯發展活動計畫、115年度高雄市政府青年局青年創業貸款利息補貼實施計畫</p>
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">第一優先</span><h3>C02｜創業、市集與商圈經營</h3><p>自行申請｜最貼近青年局創業育成機構補助與高雄市場/商圈資源，能直接設計成攤商創業育成與數位通路加速方案。 課程可先看：市集攤主創業育成班、商圈店家數位通路加速班。</p></div>
+      <p class="meta">窗口/資源：115年度補助創業育成機構及青年職涯發展活動計畫、115年度高雄市政府青年局青年創業貸款利息補貼實施計畫</p>
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">第二優先</span><h3>C03｜木工、工藝與文創商品</h3><p>合作申請｜可做商品開發與品牌通路班，但木工實作與職能證照需場地、設備、師資與安全文件，宜與職訓/工藝單位合作。 課程可先看：木工文創商品開發班、工藝品牌與通路班。</p></div>
+      <p class="meta">窗口/資源：115年度補助創業育成機構及青年職涯發展活動計畫、市場青年創業補助/市場青創輔導</p>
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">第二優先</span><h3>C04｜勞工權益與法務</h3><p>合作申請｜內容適合作為創業與雇主基礎課程；若進入勞工教育補助或工會訓練，需與工會、律師、公會或官方辦訓單位合作。 課程可先看：青創雇主勞動法務基礎班、工會與企業勞權教育課程。</p></div>
+      <p class="meta">窗口/資源：115年度補助創業育成機構及青年職涯發展活動計畫、補助工會組織辦理勞工教育訓練活動</p>
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">第三優先</span><h3>C05｜醫學保健與大健康</h3><p>中長期建置｜一般健康促進可做社區課程；長照/醫事積分、照服訓練需專業認可與主管機關資格，不宜以一般公司直接宣稱專業認可。 課程可先看：社區健康促進與高齡友善班、長照與大健康產業入門班。</p></div>
+      <p class="meta">窗口/資源：115年度補助辦理照顧服務員職業訓練專班130小時、115照顧服務員資格訓練自費班班期</p>
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">第二優先</span><h3>C06｜文創、文化培訓與地方創生</h3><p>合作申請｜適合與市場、商圈、社區、文化場域共構；可做地方品牌與文創商品班，但文化部/地方創生補助常需場域與公私協力證據。 課程可先看：地方品牌與文創商品轉譯班、商圈文化導覽與場域活化班。</p></div>
+      <p class="meta">窗口/資源：115年度補助創業育成機構及青年職涯發展活動計畫、115年高雄市青年創業友善空間推動計畫</p>
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">第三優先</span><h3>C07｜演藝與展演產業</h3><p>合作申請｜可做展演營運、票務宣傳與活動企劃課程；若涉及立案演藝團隊、表演藝術補助或舞台技術，宜找演藝團隊/場館合作。 課程可先看：展演活動企劃與票務宣傳班、演藝團隊營運與製作管理班。</p></div>
+      <p class="meta">窗口/資源：115年度補助創業育成機構及青年職涯發展活動計畫、高雄市政府文化局表演藝術類活動補助</p>
+    </article>
+    </div>
+  </section>
+
+  <section class="section" data-contract-section="government-route">
+    <h2>政府補助主線怎麼談</h2>
+    <p class="lead">政府路線要用「官方需求」反推公司要準備的文件與課程成果。每個正式結論仍需保留查核日期與證據類型。</p>
+    <div class="table-wrap "><table><thead><tr><th>政府/官方主題</th><th>狀態</th><th>窗口</th><th>額度/資源</th><th>申請條件</th><th>課程設計方向</th><th>證據類型</th><th>查核日期</th><th>官方來源</th></tr></thead><tbody><tr><td>跨類別創業育成與青年職涯活動</td><td>正式投件可用</td><td>高雄市政府青年局｜創業輔導科</td><td>每案最高80萬元；最高補助70%；同一單位同年度最多2案</td><td>公司、獨資、合夥、有限合夥、學校或民間團體可申請；每案最高80萬元、最高補助70%、同一單位同年度最多2案；計畫開始1個月前送件，至115年11月20日或經費用罄。</td><td>可設計為AI行銷、電商、市集攤商、文創商品、勞動法務、地方品牌、展演營運等模組；每模組搭配實作成果，如商品頁、攤位改善表、品牌故事、法務檢核表、展演企劃或媒合紀錄。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://youth.kcg.gov.tw/Resource_Content.aspx?n=38&amp;s=12291&amp;sms=10161">https://youth.kcg.gov.tw/Resource_Content.aspx?n=38&amp;s=12291&amp;sms=10161</a></td></tr><tr><td>青年創業貸款利息補貼</td><td>學員端資源</td><td>高雄市政府青年局｜資源整合/青年創業窗口</td><td>貸款額度區間100-300萬元；補貼依公告與銀行送件審查</td><td>貸款額度區間100至300萬元；第一期115年7月1日至115年12月31日、第二期116年1月1日至116年6月30日；不得重複領取同性質青年創業貸款補助或利息補貼。</td><td>青年創業資金準備班：商業登記檢核、銀行申貸溝通、利息補貼申請書填寫、營運數據整理、切結/個資文件注意事項。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://youth.kcg.gov.tw/Resource_Content.aspx?n=38&amp;s=13261&amp;sms=10161">https://youth.kcg.gov.tw/Resource_Content.aspx?n=38&amp;s=13261&amp;sms=10161</a></td></tr><tr><td>青創友善空間與場域育成</td><td>場域合作/年度已截止</td><td>高雄市政府青年局｜青創友善空間專案小組</td><td>每家空間業者最高30萬元</td><td>每家空間最高30萬元；方案可支應青創進駐租金、諮詢輔導、課程講座、育成、培育、媒合與交流活動；115年計畫執行期為115年7月1日至12月31日。</td><td>青創友善空間可承載創業入門班、AI行銷工作坊、市集品牌診斷、遠距工作者社群活動、創業諮詢與媒合日。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://www.kcg.gov.tw/CityNews_Detail1.aspx?n=3A379BB94CA5F12D&amp;ss=0EAEB34D3C268C3C">https://www.kcg.gov.tw/CityNews_Detail1.aspx?n=3A379BB94CA5F12D&amp;ss=0EAEB34D3C268C3C</a></td></tr><tr><td>市場青創與商圈/攤商升級</td><td>正式申請簡章待公告</td><td>高雄市政府經濟發展局/市場管理處｜市場管理窗口</td><td>新聞稿與既有成效顯示最高30萬元；115正式辦法待公告</td><td>目前未查到115年度市場青創正式申請簡章；既有頁面可作政策方向與對標，不可直接作投件條件。</td><td>市集攤主創業育成班：成本定價、攤位陳列、商品包裝、社群導流、電商上架、數位支付與市場活動企劃。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://edbkcg.kcg.gov.tw/cp.aspx?n=A38EEEA07883DC3D">https://edbkcg.kcg.gov.tw/cp.aspx?n=A38EEEA07883DC3D</a></td></tr><tr><td>工藝學堂與工藝人才培訓</td><td>附件待人工補查</td><td>國立臺灣工藝研究發展中心｜工藝學堂/補助窗口</td><td>每案最高13萬元；預計徵選10案</td><td>既有資料顯示每案最高13萬元、預計徵選10案、受理期間約115年6月4日至6月22/23日；正式投件前需重新下載簡章確認。</td><td>木工與工藝商品班：材料認識、工具安全、打樣、品牌包裝、定價、展售與市集測試。</td><td>官方頁面/待補附件</td><td>2026-06-26</td><td><a href="https://www.ntcri.gov.tw/home/zh-tw/activitysoonlist/7506969">https://www.ntcri.gov.tw/home/zh-tw/activitysoonlist/7506969</a></td></tr><tr><td>博物館人才培育與文化專業推展</td><td>需博物館/學校/文化組織合作</td><td>文化部｜獎補助資訊網/博物館事業窗口</td><td>每一年度執行計畫最高200萬元</td><td>可針對人才培育、國際合作交流、研究、保存維護等類型提案；民間組織通常需結合國內博物館或地方文化館，計畫以單一年度執行為原則。</td><td>文化場域人才班：地方工藝詮釋、展覽教育、導覽設計、典藏故事轉譯、工作坊教案與觀眾參與設計。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://law.moc.gov.tw/LawContent.aspx?id=GL000817">https://law.moc.gov.tw/LawContent.aspx?id=GL000817</a></td></tr><tr><td>高雄工會勞工教育訓練</td><td>需工會主體</td><td>高雄市政府勞工局｜輔導工會組織/勞工教育窗口</td><td>依高雄市工會組織辦理勞工教育訓練補助辦法；金額需讀附件核定</td><td>半日訓練參加人數原則達30人，一日以上訓練原則達40人；半日需一門二節以上核心課程，一日需二門四節以上核心課程，二日以上依規定提高核心課程比例。</td><td>勞工權益與法務班：勞基法、勞健保、職安、勞資溝通、工會法、勞動三法、性別平等與職場霸凌防治。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://labor.kcg.gov.tw/News_Content.aspx?n=4AF4F4DF1C70DDD9&amp;s=0A4FA0FECE84F81A&amp;sms=792263BC28771C9C">https://labor.kcg.gov.tw/News_Content.aspx?n=4AF4F4DF1C70DDD9&amp;s=0A4FA0FECE84F81A&amp;sms=792263BC28771C9C</a></td></tr><tr><td>勞動部職業工會教育</td><td>需職業工會主體</td><td>勞動部｜勞動關係/工會教育窗口</td><td>補助實際支出總經費90%為原則，最高以核定補助金額為限</td><td>工會教育一日應安排5節以上、二日應安排8節以上，均需包含2節核心課程及2節政策課程；每場次參訓人數不得低於30人；補助實際支出總經費90%為原則。</td><td>工會教育一日班：工會法規、財務處理、AI與勞資關係、職業災害、職場霸凌、性別平等與反詐騙；二日班可加入案例演練與分組研討。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://www.mol.gov.tw/1607/28752/28774/28776/28778/67813/post">https://www.mol.gov.tw/1607/28752/28774/28776/28778/67813/post</a></td></tr><tr><td>照顧服務員職業訓練130小時</td><td>需核定訓練單位</td><td>高雄市政府勞工局訓練就業中心｜照顧服務員職業訓練窗口</td><td>各班預繳費約12,400-13,130元；補助班別依公告</td><td>屬職業訓練專班與核定訓練單位制度；一般公司不可自行宣稱可辦照服員資格班。</td><td>可先做長照入門導流班：長照制度、照服工作認識、職涯說明、基本照顧倫理；正式130小時班需交由核定訓練單位承辦。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://ktec.kcg.gov.tw/cp.aspx?n=F5B7D10173B8698E">https://ktec.kcg.gov.tw/cp.aspx?n=F5B7D10173B8698E</a></td></tr><tr><td>照顧服務員資格訓練自費班</td><td>合作單位名單/非補助主案</td><td>高雄市政府衛生局｜長期照顧中心</td><td>自費班；費用依附件班期公告</td><td>屬照服員資格訓練班期資訊，非一般培訓公司直接申請補助；可作合作單位與課程對標名單。</td><td>大健康導入班或照服前導班；正式資格班應與輔英、高醫、紅十字會、照顧服務人力協會等公告單位接洽。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://health.kcg.gov.tw/News_Content.aspx?n=5197CF25EC692061&amp;s=3BBB2727B80C4698&amp;sms=A132879EA0563C18">https://health.kcg.gov.tw/News_Content.aspx?n=5197CF25EC692061&amp;s=3BBB2727B80C4698&amp;sms=A132879EA0563C18</a></td></tr><tr><td>長照繼續教育課程與積分資源</td><td>專業認可制度/非補助案</td><td>衛生福利部長照專區｜長照繼續教育資源</td><td>非補助案；屬專業課程與積分查詢制度</td><td>若要作長照人員繼續教育或專業積分課程，需符合衛福部與地方政府認可制度；一般健康促進課程不可自行標示專業積分。</td><td>一般可做健康識能、高齡友善、照顧者支持；專業積分課程需依失智症20小時、足部照護、標準化課程等官方資源設計。</td><td>官方頁面/待補附件</td><td>2026-06-26</td><td><a href="https://1966.gov.tw/LTC/lp-6641-207.html">https://1966.gov.tw/LTC/lp-6641-207.html</a></td></tr><tr><td>地方創生青年培力工作站</td><td>年度已截止/地方場域型</td><td>國家發展委員會｜地方創生青年培力工作站窗口</td><td>一般組每案每年最高250萬元；高階組每案每年最高300萬元</td><td>一般組每案每年最高250萬元，高階組每案每年最高300萬元；115年度徵件至115年1月5日中午12時。</td><td>地方創生培力課程：地方議題盤點、品牌商品化、營運財務、社群動員、體驗活動、數位行銷與成果追蹤。</td><td>官方頁面/待補附件</td><td>2026-06-26</td><td><a href="https://www.ndc.gov.tw/nc_14813_39540">https://www.ndc.gov.tw/nc_14813_39540</a></td></tr><tr><td>青年村落文化行動</td><td>個人提案/公司可作合作對象</td><td>文化部｜文化資源司/青年村落文化行動窗口</td><td>最高獎勵150萬元；115年總實作獎勵金2540萬元，37案</td><td>115年度受理期間為114年9月9日至10月23日；最高獎勵150萬元；執行期程自核定日起原則一年，不得少於6個月。</td><td>地方文化行動班：田調訪談、地方故事轉譯、文化體驗工作坊、地方產品/服務設計、社區合作、成果展與期末報告。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://youthgo.moc.gov.tw/News_Content.aspx?n=2800&amp;s=242909">https://youthgo.moc.gov.tw/News_Content.aspx?n=2800&amp;s=242909</a></td></tr><tr><td>高雄表演藝術類活動補助</td><td>藝文活動型/非一般培訓案</td><td>高雄市政府文化局｜藝文補助/表演藝術窗口</td><td>每案最高150萬元</td><td>對象包含設籍高雄之個人、依法於高雄設立且取得統一編號之藝文團體，以及於高雄展演之文化事業、文教基金會或經紀公司；同一案件已獲主管機關或受本府監督行政法人補助者不受理。</td><td>展演企劃與製作工作坊可作活動的一部分：節目策劃、宣傳票務、舞台製作、觀眾經營、展演成果記錄。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://outlaw.kcg.gov.tw/LawContent.aspx?id=GL001867">https://outlaw.kcg.gov.tw/LawContent.aspx?id=GL001867</a></td></tr><tr><td>流行音樂人才培訓</td><td>正式投件可用但需產業資格</td><td>文化部影視及流行音樂產業局｜流行音樂組</td><td>第一類最高200萬元且不逾總經費49%；第二類不逾核定預算49%</td><td>第一類每案補助不得逾總經費49%，最高200萬元，培訓期程為一學年；第二類每案補助不得逾核定企畫書總預算49%，培訓期程為每年1月1日至10月31日；115年度受理至115年1月23日。</td><td>流行音樂產業班至少30小時：音樂製作、企宣行銷、經紀、策展、舞台技術、票務宣傳、產業實習、作品發表與就業媒合。</td><td>官方頁面+官方下載附件</td><td>2026-06-26</td><td><a href="https://www.bamid.gov.tw/News_Content.aspx?n=3483&amp;s=248331">https://www.bamid.gov.tw/News_Content.aspx?n=3483&amp;s=248331</a></td></tr></tbody></table></div>
+  </section>
+
+  <section class="section" data-contract-section="third-party-route">
+    <h2>第三類非政府資源怎麼談</h2>
+    <p class="lead">第三類資源的任務是補導師、場域、企業資源、雲端抵免、文化內容或加速器對標；不要把它說成政府補助資格。</p>
+    <div class="table-wrap "><table><thead><tr><th>第三類路線</th><th>單位</th><th>資源型態</th><th>優先級</th><th>目前狀態</th><th>課程用途</th><th>限制</th><th>查核狀態</th><th>官方來源</th></tr></thead><tbody><tr><td>文策學院第七期文化創業加速器</td><td>文化內容策進院／文策學院</td><td>加速器、創業培訓、投資媒合</td><td>A</td><td>115年度已截止；下一期可追蹤</td><td>適合把文創、演藝、文化科技、地方品牌課程設計成「文化內容創業育成班」或「IP商品化與募資班」。</td><td>不是政府補助核定資格，也不是辦訓機構立案；年度徵件已截止，投件前必須重查最新期別。</td><td>verified</td><td><a href="https://school.taicca.tw/accelerator/apply">https://school.taicca.tw/accelerator/apply</a></td></tr><tr><td>文策學院文化創業新手村與青創認證課程</td><td>文化內容策進院／文策學院</td><td>線上課程、創業學習時數、文化內容知識庫</td><td>A</td><td>平台資源開放；部分課程需登入或依公告報名</td><td>可作為我方文創、地方創生、市集品牌課程的先修模組與學員作業設計參考。</td><td>不可把學員課程證明寫成我方機構資格；需逐課重查是否仍開放。</td><td>verified</td><td><a href="https://school.taicca.tw/">https://school.taicca.tw/</a></td></tr><tr><td>資策會數位教育研究所企業人才發展生態系</td><td>財團法人資訊工業策進會／數位教育研究所</td><td>企業培訓、職能指引、顧問輔導、人才驗證</td><td>A</td><td>合作洽詢型；依課程、認證或專案公告辦理</td><td>適合作為AI、程式、電商、行銷科技課程的職能架構、測驗或共同開課洽談對象。</td><td>資策會合作或認證不等於我方取得政府補助辦訓資格；需簽約或正式合作文件才可寫入提案。</td><td>verified</td><td><a href="https://www.iiiedu.org.tw/">https://www.iiiedu.org.tw/</a></td></tr><tr><td>AppWorks Accelerator AW#33</td><td>AppWorks</td><td>創業加速器、導師、募資、企業鏈結</td><td>B</td><td>AW#33 申請開放至2026-07-19</td><td>適合把AI、電商、創業課程設計成「創業團隊加速前訓」或「Demo Day簡報與商模驗證班」。</td><td>主題與公司階段需匹配；入選不等於辦訓資格或政府補助資格。</td><td>verified</td><td><a href="https://appworks.tw/accelerator/">https://appworks.tw/accelerator/</a></td></tr><tr><td>Garage+ Startup Global Program</td><td>時代基金會 Garage+</td><td>國際加速器、投資人與企業媒合</td><td>B</td><td>需追蹤當期批次申請</td><td>適合轉成「科技創業國際化前訓」或「企業合作提案班」。</td><td>目前需補當期申請細則與入選名單官方頁；不得寫成已可申請補助。</td><td>pending_review</td><td><a href="https://garageplus.asia/">https://garageplus.asia/</a></td></tr><tr><td>StarFab TAI1 AI 加速器</td><td>StarFab Accelerator</td><td>AI加速器、企業共創、NVIDIA Inception導入</td><td>A</td><td>申請期間2026-06-02至2026-07-10</td><td>適合AI、生成式AI、AI商務應用、大健康數位產品的加速前訓與共創工作坊。</td><td>對象偏AI新創，不適合一般無產品團隊；不是政府補助或辦訓資格。</td><td>verified</td><td><a href="https://zh.starfabx.com/tai1-ai-accelerator/">https://zh.starfabx.com/tai1-ai-accelerator/</a></td></tr><tr><td>AAMA 台北搖籃計畫</td><td>創業者共創平台基金會／AAMA 台北搖籃計畫</td><td>兩年創業陪跑、導師、工作坊、社群</td><td>B</td><td>第15期已於2026-04-30截止；下一期可追蹤</td><td>適合將我方課程包成「創業者成長班」「品牌與組織營運班」「募資與國際化前訓」。</td><td>申請主體多為創業者本人或團隊；不是補助款，也不是辦訓單位資格。</td><td>verified</td><td><a href="https://www.aamataipei.com.tw/">https://www.aamataipei.com.tw/</a></td></tr><tr><td>NVIDIA Inception Program</td><td>NVIDIA</td><td>AI新創資源、技術訓練、投資人與市場曝光</td><td>B</td><td>常態申請</td><td>適合AI課程後段設計為「AI產品化與新創資源申請工作坊」。</td><td>需要公司與產品化條件；不可把會員資格寫成政府認證。</td><td>verified</td><td><a href="https://www.nvidia.com/en-us/startups/">https://www.nvidia.com/en-us/startups/</a></td></tr><tr><td>Google for Startups Cloud</td><td>Google Cloud</td><td>雲端抵免、AI開發資源、支援服務</td><td>B</td><td>常態申請；依新創階段與資格審核</td><td>可設計「AI雲端原型營」「電商資料與AI應用班」，讓學員完成可部署原型。</td><td>抵免不是現金補助；需注意雲端成本、帳號資格與使用期限。</td><td>verified</td><td><a href="https://cloud.google.com/startup?hl=zh-TW">https://cloud.google.com/startup?hl=zh-TW</a></td></tr><tr><td>AWS Activate Credits</td><td>Amazon Web Services</td><td>雲端抵免、技術建置資源</td><td>B</td><td>常態申請；依創業階段與Activate Provider資格</td><td>可搭配程式、AI、電商、數位健康課程設計「雲端部署成果」。</td><td>抵免有資格、期限與帳務限制；不是補助核定或辦訓資格。</td><td>verified</td><td><a href="https://aws.amazon.com/startups/credits/">https://aws.amazon.com/startups/credits/</a></td></tr><tr><td>高雄亞灣新創園／Startup Terrace Kaohsiung</td><td>經濟部中小及新創企業署、高雄亞灣新創園營運團隊</td><td>空間進駐、技術訓練、國際鏈結、企業共創</td><td>A</td><td>現行資源；進駐與活動依公告申請</td><td>適合高雄在地AI、電商、數位健康、地方品牌課程導入場域參訪、Demo Day與新創進駐路線。</td><td>此路線不是純民間資源，需在報告中標註為橋接型，不可與補助款申請混寫。</td><td>verified</td><td><a href="https://youth.kcg.gov.tw/Resource_Content.aspx?n=39&amp;sms=10162&amp;s=8114">https://youth.kcg.gov.tw/Resource_Content.aspx?n=39&amp;sms=10162&amp;s=8114</a></td></tr><tr><td>t.Hub Taipei 創新育成服務</td><td>t.Hub Taipei</td><td>課程工作坊、原型、法稅智財、募資與國際行銷</td><td>C</td><td>需追蹤當期活動與進駐規則</td><td>可作為課程模組對標，尤其是原型、智財、募資簡報與國際行銷。</td><td>需補查是否可作為我方合作對象；不是政府補助資格。</td><td>pending_review</td><td><a href="https://www.t-hubtaipei.com/programs">https://www.t-hubtaipei.com/programs</a></td></tr><tr><td>Taiwan Startup Stadium 國際化輔導與導師網絡</td><td>Taiwan Startup Stadium</td><td>導師網絡、國際化輔導、活動與社群</td><td>C</td><td>待補官方當期計畫頁</td><td>可作為英文Pitch、國際市場進入與新創社群模組待補資料。</td><td>正式投件前需補官方program/apply頁；目前僅列pending_review。</td><td>pending_review</td><td><a href="https://www.startupstadium.tw/tss-mentors">https://www.startupstadium.tw/tss-mentors</a></td></tr></tbody></table></div>
+    <h3>第三類 30/60/90 天策略</h3>
+    <div class="table-wrap "><table><thead><tr><th>第三類目標</th><th>建議動作</th><th>30天</th><th>31-60天</th><th>61-90天</th><th>判定</th></tr></thead><tbody><tr><td>文創、演藝、地方品牌與文化內容課程</td><td>第一優先追蹤文策院文化創業加速器下一期，並把課程包成文化內容創業育成班。</td><td>整理我方公司登記、文化內容作品或課程實績、講師名單、Demo Day展示素材。</td><td>建立文策院版課程大綱、IP商品化作業、募資簡報模板與合作夥伴名單。</td><td>洽詢文策學院、文化創業加速器窗口，確認下一期公告與申請格式。</td><td>優先進入</td></tr><tr><td>AI、程式、電商與數位商務課程</td><td>以資策會作職能語彙與合作對象，搭配StarFab、NVIDIA、Google、AWS作第三類資源。</td><td>盤點AI/程式/電商師資、學員成果、可部署原型、企業需求案例。</td><td>建立AI雲端原型營、生成式AI商務應用班、電商資料應用班。</td><td>洽詢資策會合作與StarFab/NVIDIA/Google/AWS申請門檻。</td><td>優先進入</td></tr><tr><td>市集攤主、微型創業與地方商圈課程</td><td>第三類以高雄亞灣新創園、AAMA、文策學院作資源導入；政府補助仍另走青年局或經發局。</td><td>建立市集品牌診斷表、攤主學員輪廓、電商與社群轉型成果指標。</td><td>安排在地商家試辦班，累積案例、照片、銷售前後測與學員回饋。</td><td>把試辦成果轉成政府補助與第三類合作雙版本提案。</td><td>可立即做課程商品</td></tr><tr><td>醫學保健、大健康與長照相關課程</td><td>先走一般健康促進與數位健康產品化，不碰醫事積分或長照專業認可，除非有合格機構合作。</td><td>把課程分成一般健康、大健康商務、數位健康產品、專業認可四層。</td><td>尋找醫療、長照、學校或職訓機構合作，確認講師與認可邊界。</td><td>若要專業積分或長照訓練，另開主管機關查核表與合作合約。</td><td>合作申請／中長期</td></tr></tbody></table></div>
+  </section>
+
+  <section class="section" data-contract-section="course-products">
+    <h2>課程商品設計模板</h2>
+    <p class="lead">課程不是只有課名。每個商品都要能說明目標群眾、時數、模組、成果證據，以及可對應的政府或第三類路線。</p>
+    <div class="table-wrap "><table><thead><tr><th>課程商品</th><th>層級</th><th>目標群眾</th><th>建議時數</th><th>模組/內容</th><th>成果證據</th><th>對應路線</th><th>優先級</th></tr></thead><tbody><tr><td>AI行銷與電商成長班</td><td>入門班</td><td>青年/攤商/小型公司</td><td>12-18小時</td><td>AI文案、社群內容、廣告素材、電商上架、成效表單</td><td>完成商品頁、社群貼文、簡易廣告企劃、補助前置文件</td><td>可自行開班；OJT需合作</td><td>高</td></tr><tr><td>程式與自動化營運工作坊</td><td>進階班</td><td>微型企業/營運人員</td><td>24-36小時</td><td>n8n、自動表單、資料整理、簡易網站、AI客服流程</td><td>完成一個自動化營運流程與成果展示</td><td>合作申請</td><td>中</td></tr><tr><td>市集攤主創業育成班</td><td>入門班</td><td>攤商/青年創業者</td><td>12-18小時</td><td>成本定價、擺攤陳列、商品包裝、銷售話術、補助申請</td><td>完成攤位營運健檢與補助準備清單</td><td>可自行申請</td><td>最高</td></tr><tr><td>商圈店家數位通路加速班</td><td>完整育成班</td><td>商圈店家/市場攤商</td><td>48-72小時</td><td>店家診斷、商品上架、社群內容、導客活動、成果發表</td><td>完成店家改善紀錄、導流數據與成果報告</td><td>可自行或合作申請</td><td>最高</td></tr><tr><td>木工文創商品開發班</td><td>入門/進階</td><td>工藝創作者/文創品牌</td><td>24-36小時</td><td>木工安全、商品設計、打樣、包裝、定價、展售</td><td>完成一款打樣商品與展售頁</td><td>需合作場地/師資</td><td>中</td></tr><tr><td>工藝品牌與通路班</td><td>進階班</td><td>文創工作室/工藝品牌</td><td>18-30小時</td><td>品牌定位、量產評估、通路、展售、市集測試</td><td>完成品牌頁與通路提案</td><td>合作申請</td><td>中</td></tr><tr><td>青創雇主勞動法務基礎班</td><td>入門班</td><td>青創公司/店家/攤商</td><td>10-12小時</td><td>勞基法、勞健保、契約、個資、消保、智慧財產</td><td>完成雇主合規檢核表與契約範本清單</td><td>合作申請</td><td>中高</td></tr><tr><td>工會與企業勞權教育課程</td><td>進階班</td><td>工會會員/企業HR</td><td>18-30小時</td><td>勞資爭議、職安、職災、工會法、溝通協商</td><td>完成案例研討與課後測驗</td><td>需工會/專業合作</td><td>中</td></tr><tr><td>社區健康促進與高齡友善班</td><td>入門班</td><td>社區居民/照顧者/銀髮族</td><td>12-18小時</td><td>健康識能、運動、營養、慢病管理、照顧者支持</td><td>完成健康行動計畫與社區成果紀錄</td><td>一般健康可合作；專業積分不可自行宣稱</td><td>中</td></tr><tr><td>長照與大健康產業入門班</td><td>入門/轉職</td><td>青年/照顧者/服務業者</td><td>18-36小時</td><td>長照制度、銀髮服務、健康管理、場域服務設計</td><td>完成服務設計提案；不宣稱專業積分</td><td>需醫療/長照認可單位合作</td><td>中</td></tr><tr><td>AI與數位商務產品化班</td><td>第三類延伸</td><td>中小企業、創業團隊、行銷與電商從業者</td><td>18-36小時</td><td>入門：AI工具與工作流；進階：雲端部署與資料應用；完整育成：Demo Day與資源申請。</td><td>資策會職能指引與驗證、StarFab AI加速器、NVIDIA/Google/AWS官方新創資源。</td><td>合作申請／第三類資源導入</td><td>第三類</td></tr><tr><td>文化內容創業與IP商品化班</td><td>第三類延伸</td><td>文創團隊、演藝團隊、地方品牌、內容創作者</td><td>24-48小時</td><td>入門：文化內容商模；進階：IP商品化與通路；完整育成：募資簡報、DEMO DAY與資源媒合。</td><td>文策學院加速器申請頁、文策學院課程資源、AAMA公益導師制。</td><td>優先合作申請／下一期文策院加速器追蹤</td><td>第三類</td></tr><tr><td>市集攤主品牌與電商轉型班</td><td>第三類延伸</td><td>市集攤主、微型商家、地方品牌、文創商品經營者</td><td>12-30小時</td><td>入門：品牌定位與上架；進階：社群電商與數據；完整育成：市集實戰、通路媒合、商業簡報。</td><td>亞灣新創園提供技術訓練與導師諮詢，文策學院提供文化創業課程語彙。</td><td>自行開課＋合作導入第三類資源</td><td>第三類</td></tr><tr><td>創業募資與企業合作前訓</td><td>第三類延伸</td><td>有產品或服務雛形的新創、文創與商業團隊</td><td>24-60小時</td><td>入門：商模與財務；進階：投資人簡報與企業提案；完整育成：Demo Day與外部申請陪跑。</td><td>各加速器官方頁揭示導師、募資、企業媒合、Demo Day或投資人連結。</td><td>合作申請／課程商品化</td><td>第三類</td></tr><tr><td>大健康與數位健康產品驗證班</td><td>第三類延伸</td><td>健康科技、長照科技、健康促進服務團隊</td><td>18-48小時</td><td>入門：健康服務場景與合規邊界；進階：AI/雲端原型；完整育成：場域驗證與企業媒合。</td><td>StarFab列醫療與AI領域，亞灣新創園列生醫新創年限與AIoT場域。</td><td>合作申請／中長期建置</td><td>第三類</td></tr><tr><td>木工工藝與文創商品創業班</td><td>第三類延伸</td><td>木工創作者、工藝師、市集商品團隊、文創品牌</td><td>30-72小時</td><td>入門：產品安全與成本；進階：商品設計與品牌；完整育成：上架、展售與文化內容提案。</td><td>文策院文化內容產業範圍與創業資源、AAMA品牌行銷與組織管理資源。</td><td>自行開課＋文化創業合作路線</td><td>第三類</td></tr></tbody></table></div>
+  </section>
+
+  <section class="section" data-contract-section="checklists">
+    <h2>洽談用檢核表</h2>
+    <p class="lead">這些欄位是第一次洽談後必須補齊的資料。缺資料就標待補，不要猜測、不代填。</p>
+    <div class="table-wrap "><table><thead><tr><th>洽談必問欄位</th><th>需要附件</th><th>判定方式</th><th>備註</th></tr></thead><tbody><tr><td>公司正式名稱</td><td>公司登記資料</td><td>必填</td><td>不得使用品牌名代替正式名稱</td></tr><tr><td>統一編號</td><td>公司登記資料</td><td>必填</td><td>用於去重與資格查核</td></tr><tr><td>負責人與設籍條件</td><td>身分或公司資料</td><td>依補助規定</td><td>青年局創業育成機構案不等同青年創業個人補助</td></tr><tr><td>公司所在地</td><td>登記資料</td><td>必填</td><td>確認是否在高雄或可服務高雄</td></tr><tr><td>營業項目</td><td>商工登記截圖或謄本</td><td>高/中/低</td><td>確認是否可支撐創業育成、培訓、顧問、資訊服務</td></tr><tr><td>章程目的</td><td>章程或公司章程</td><td>高/中/低</td><td>是否明列人才培育、職業訓練、創業育成</td></tr><tr><td>既有課程類別</td><td>課綱、簡報、招生頁</td><td>對應C01-C07</td><td>第一輪優先C01/C02</td></tr><tr><td>既有辦訓實績</td><td>照片、名冊、教材、滿意度、成果</td><td>高/中/低</td><td>需可查核</td></tr><tr><td>師資名冊</td><td>履歷、證照、授課證明</td><td>高/中/低</td><td>需至少主講、業師、輔導顧問</td></tr><tr><td>場地資料</td><td>租約、同意書、消防、保險</td><td>高/中/低</td><td>可先採合作場地</td></tr><tr><td>專職人員</td><td>勞保或聘僱證明、分工表</td><td>高/中/低</td><td>至少專案經理與行政核銷</td></tr><tr><td>預算能力</td><td>自籌款證明或預算規劃</td><td>高/中/低</td><td>青年局最高補助70%</td></tr><tr><td>合作單位</td><td>合作意向書、會議紀錄</td><td>高/中/低</td><td>可增加審查可信度</td></tr><tr><td>資料管理能力</td><td>雲端資料夾或文件SOP</td><td>高/中/低</td><td>核銷與TTQS共用</td></tr><tr><td>風險與限制</td><td>風險表</td><td>高/中/低</td><td>資本門、既有營運支出、未核定項目不得列補助</td></tr><tr><td>下一步補件</td><td>補件清單</td><td>必填</td><td>每次工作結束更新</td></tr></tbody></table></div>
+    <h3>目前我方資格差距表</h3>
+    <div class="table-wrap "><table><thead><tr><th>檢核項目</th><th>目前狀態</th><th>符合度</th><th>證據或缺口</th><th>下一步任務</th></tr></thead><tbody><tr><td>公司登記與統編</td><td>待補資料</td><td>待判定</td><td>尚未提供公司正式名稱與統編</td><td>補公司登記影本與統編</td></tr><tr><td>營業項目</td><td>待補資料</td><td>待判定</td><td>需確認是否含產業育成業、管理顧問、資訊服務、教育訓練或相關項目</td><td>查商工登記並列出可支撐項目</td></tr><tr><td>章程目的</td><td>待補資料</td><td>待判定</td><td>需確認章程是否可支撐人才培育、創業育成、職業訓練</td><td>整理章程目的或修章建議</td></tr><tr><td>課程主題</td><td>已初步具備</td><td>可補強</td><td>現有主題可定位為市集攤商創業育成與數位通路加速</td><td>完成12-18小時前導班與72小時課綱</td></tr><tr><td>師資名冊</td><td>待補資料</td><td>不足</td><td>需提供講師學經歷、授課證明、實務案例</td><td>建立師資資料夾</td></tr><tr><td>場地與安全文件</td><td>待補資料</td><td>不足</td><td>需確認授課場地、活動場域、消防、保險、使用同意</td><td>先採合作場地並保存文件</td></tr><tr><td>辦訓實績</td><td>部分具備但待證據</td><td>待判定</td><td>需整理過去課程、活動、社群、品牌、企劃與輔導成果</td><td>用前導班補齊第一輪完整證據</td></tr><tr><td>專職人員</td><td>待補資料</td><td>不足</td><td>需指定專案經理、教務行政、核銷負責人</td><td>建立人員分工表</td></tr><tr><td>預算與自籌款</td><td>待補資料</td><td>待判定</td><td>青年局最高補助70%；仍需自籌與現金流</td><td>先做30萬以下與80萬上限兩版預算</td></tr><tr><td>合作單位</td><td>已有候選</td><td>可補強</td><td>已列高雄科大、夢想城市發展協會、青年局、經發局等候選</td><td>優先接觸1-2家具辦訓經驗單位</td></tr><tr><td>核銷與文件管理</td><td>待建立</td><td>不足</td><td>需建立發票、收據、出席、照片、成果、滿意度、講師費、採購紀錄</td><td>從第一場前導班開始建檔</td></tr></tbody></table></div>
+  </section>
+
+  <section class="section" data-contract-section="timeline">
+    <h2>3/6/12/24個月行動表</h2>
+    <p class="lead">短期先補證據與做試辦，中期再投地方育成或合作申請，長期才進 TTQS、iCAP、職訓機構或專業資格。</p>
+    <div class="table-wrap "><table><thead><tr><th>期間</th><th>目標</th><th>主要任務</th><th>階段判定</th></tr></thead><tbody><tr><td>0-3個月</td><td>補齊自評與試辦證據</td><td>完成公司資料盤點；選C01/C02或文創主線；做12-18小時前導班；建立講師、課綱、出席、照片、滿意度、成果表單。</td><td>判定可自行申請、合作申請、第三類導入或暫不進入。</td></tr><tr><td>3-6個月</td><td>形成可投件版本</td><td>整理青年局育成補助或合作主體版本；擴成72小時育成課程；確認場地、保險、預算與核銷；洽詢高雄窗口與合作單位。</td><td>決定是否投件地方育成補助，或先用合作單位承接。</td></tr><tr><td>6-12個月</td><td>建立跨類別課程線</td><td>把C03-C07依合作條件導入；文創/演藝追文策院；AI/數位追資策會、StarFab、雲端資源；累積第二批成果案例。</td><td>決定哪些類別成為主營課程，哪些維持合作型產品。</td></tr><tr><td>12-24個月</td><td>建置中長期資格</td><td>評估TTQS、iCAP、附設職訓機構、專業協會/法人合作、醫療長照或職安法規課程合作。</td><td>只對有穩定營收、師資、場地與行政能力的類別投入資格建置。</td></tr></tbody></table></div>
+  </section>
+
+  <section class="section dark" data-contract-section="caveats-assumptions">
+    <h2>申請規範、風險與不得混淆事項</h2>
+    <p class="lead">這些是內部洽談時要守住的底線。講錯資格，後面申請、合作與信任都會出問題。</p>
+    <div class="grid">
+    <article class="card">
+      <div><span class="badge">不可混淆</span><h3>公司登記</h3><p>只代表組織存在，不代表具備辦訓或政府補助資格。</p></div>
+      
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">不可混淆</span><h3>政府補助核定</h3><p>只限特定年度、特定計畫，不等於永久資格。</p></div>
+      
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">不可混淆</span><h3>TTQS</h3><p>代表訓練品質流程，不等於產業人才投資方案辦訓資格。</p></div>
+      
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">不可混淆</span><h3>iCAP</h3><p>通常是課程或職能基準認證，不等於整個機構都受認證。</p></div>
+      
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">不可混淆</span><h3>職訓機構立案</h3><p>是另一條中長期資格建置路線，不是第一輪地方育成補助。</p></div>
+      
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">不可混淆</span><h3>第三類資源</h3><p>文策院、資策會、加速器、雲端抵免可作合作或資源導入，不等於政府補助核定。</p></div>
+      
+    </article>
+    
+
+    <article class="card">
+      <div><span class="badge">不可混淆</span><h3>專業法規課程</h3><p>醫學、長照、職安、法務類必須確認主管機關、專業師資與合格合作單位。</p></div>
+      
+    </article>
+    </div>
+    <div class="worksheet">
+      <h3>不建議承諾的內容</h3>
+      <ul><li>不要承諾一定申請得到補助；年度公告、經費用罄、資格審查與核銷限制都會影響結果。</li><li>不要承諾一般公司可以直接申請所有職訓、長照、醫事、職安或法務專業課程。</li><li>不要把第三類資源包裝成政府補助款。</li><li>不要把講師個人資格寫成公司或機構資格。</li><li>不要在缺公司登記、章程、課程實績、師資、場地與核銷流程時直接進正式投件。</li></ul>
+    </div>
+  </section>
+
+  <section class="section" data-contract-section="recommended-next-steps">
+    <h2>下一步：把手冊變成合作提案</h2>
+    <p class="lead">第一次會談後，立刻把公司資料回填到檢核表，並選出一條主線、一條備援線與一個可試辦課程。</p>
+    <div class="summary">
+      <div class="summary-item"><b>會後24小時內。</b>整理公司型態、可教內容、缺口、可申請與不可承諾事項。</div>
+      <div class="summary-item"><b>會後7天內。</b>產出一頁式路線判定：自行申請、合作申請、第三類導入或中長期建置。</div>
+      <div class="summary-item"><b>會後14天內。</b>完成12-18小時前導班課綱、師資、成果證據與預算草案。</div>
+      <div class="summary-item"><b>會後30天內。</b>決定是否進入正式申請書、合作提案或先做試辦班。</div>
+    </div>
+  </section>
+
+  <section class="section" data-contract-section="source-metadata">
+    <h2>來源與查核狀態</h2>
+    <p class="lead">本手冊使用既有資料整合，未新增網路深搜。年度型補助、加速器與官方附件在正式投件前必須重新查核。</p>
+    <div class="table-wrap "><table><thead><tr><th>來源</th><th>手冊使用角色</th><th>證據類型</th><th>查核日期</th><th>本機路徑</th></tr></thead><tbody><tr><td>第三類非政府培訓資源與合作路線報告</td><td>第三類資源、文策院、資策會、加速器、雲端抵免與橋接型育成路線</td><td>HTML報告／官方來源整理</td><td>2026-06-26</td><td>報告/第三類非政府培訓資源與合作路線報告.html</td></tr><tr><td>官方需求與課程設計下一環分析報告</td><td>官方窗口、申請條件、文件、學員輪廓與課程設計</td><td>HTML報告／官方頁與附件深挖</td><td>2026-06-26</td><td>報告/官方需求與課程設計下一環分析報告.html</td></tr><tr><td>政府補助培訓全類別研究入口</td><td>全案資料入口、使用原則與資格邊界</td><td>中文入口文件</td><td>2026-06-26</td><td>政府補助培訓全類別研究入口.md</td></tr><tr><td>類別窗口補助案與對標案例報告</td><td>C01-C07窗口、補助案與標竿案例</td><td>HTML報告／窗口案例整理</td><td>2026-06-26</td><td>報告/類別窗口補助案與對標案例報告.html</td></tr><tr><td>全類別培訓補助與課程商品設計報告</td><td>七大類別策略、課程商品、申請路線與時程</td><td>HTML報告／資料庫彙整</td><td>2026-06-26</td><td>報告/全類別培訓補助與課程商品設計報告.html</td></tr><tr><td>團體公司轉型培訓機構規劃簡報設計版</td><td>轉型定位、政府可核定角色與簡報視覺樣式</td><td>HTML簡報</td><td>2026-06-26</td><td>報告/團體公司轉型培訓機構規劃簡報_設計版.html</td></tr><tr><td>補助資源與對標條件匯整</td><td>高雄青年局、青創友善空間、市場商圈與辦訓對標整理</td><td>Markdown分析報告</td><td>2026-06-26</td><td>報告/補助資源與對標條件匯整.md</td></tr><tr><td>政府補助培訓機構申請起始工作階段</td><td>第一輪主線、不可混淆資格、下一步優先清單</td><td>中文起始入口</td><td>2026-06-26</td><td>政府補助培訓機構申請起始工作階段.md</td></tr></tbody></table></div>
+  </section>
+</body>
+</html>
